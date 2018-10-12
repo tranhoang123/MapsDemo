@@ -8,18 +8,28 @@ export default class MapTest extends Component {
   // const { params } = this.props.navigate.state;
   // var location = params.location;
   render () {
+    const{params} = this.props.navigation.state;
     return (
       <View style={styles.container}>
         <MapView
           provider={PROVIDER_GOOGLE}
           style={styles.map}
           region={{
-            latitude: this.props.navigation.state.params.location.Kinhdo,
-            longitude: this.props.navigation.state.params.location.Vido,
-            latitudeDelta: 1.2,
-            longitudeDelta: 1.2,
+            latitude: params.location.Kinhdo,
+            longitude: params.location.Vido,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01
           }}
-        ></MapView>
+          //showUserLocation={true}
+          showsCompass = {true}
+        >
+        <MapView.Marker coordinate={{
+          latitude: params.location.Kinhdo,
+          longitude: params.location.Vido,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01
+        }}/>
+        </MapView>
       </View>
     )
   }
